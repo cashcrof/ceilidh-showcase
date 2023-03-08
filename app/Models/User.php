@@ -41,4 +41,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    
+
+    protected function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    
+
+    public function isAdmin() {
+        if ($this->email === 'admin@home.com') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }
