@@ -5,6 +5,11 @@
             <div class="text-center">
                 <h1 class="text-2xl font-bold  bg-gray-300 ">{{ $category->name }} Projects</h1>
             </div>
+        @elseif ($tag)
+            <a class="text-xs w-full" href="/projects">Back to Projects</a>
+            <div class="text-center">
+                <h1 class="text-2xl font-bold  bg-gray-300 ">{{ $tag->name }} Projects</h1>
+            </div>
         @endif
         <div class="relative flex justify-center min-h-screen bg-gray-300 sm:items-center py-4 sm:pt-0">
             <div class="mt-6 w-1/2">
@@ -14,7 +19,13 @@
                     @endforeach
                 </section>
                 @if (count($projects))
-                    <div class="text-xs w-full text-right">{{ count($projects) }} projects to peep.</div>
+                    <div class="text-xs mt-4 w-full text-right">
+                        @if ($projects instanceof \Illuminate\Pagination\AbstractPaginator)
+                            {{ $projects->links() }}
+                        @elseif ($category)
+                            Found {{ count($projects) }} Projects in {{ $category->name }}
+                        @endif
+                    </div>
                 @else
                     <div>Nothing to showcase, yet.</div>
                 @endif

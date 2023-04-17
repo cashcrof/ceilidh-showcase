@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'title',
         'slug',
@@ -16,7 +16,10 @@ class Project extends Model
         'body',
         'url',
         'published_date',
-        'category_id'
+        'category_id',
+        'image',
+        'thumb',
+        'tags'
     ];
 
     public function category()
@@ -24,5 +27,9 @@ class Project extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'projects_tags', 'projects_id', 'tags_id');
+    }
 
 }

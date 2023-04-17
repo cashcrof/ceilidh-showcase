@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +23,8 @@ Route::get('/projects', [ProjectController::class, 'index']);
 Route::get('/projects/{project:slug}', [ProjectController::class, 'show']);
 Route::get('/about', [ProjectController::class, 'about']);
 Route::get('/', [ProjectController::class, 'home']);
-Route::get('/categories/{category:slug}', [ProjectController::class, 'listByCategory']);
+Route::get('/projects/categories/{category:slug}', [ProjectController::class, 'listByCategory']);
+Route::get('/projects/tags/{tag:slug}', [ProjectController::class, 'listByTag']);
 Route::get('/register', [RegisterUserController::class, 'create'])->middleware('guest');
 Route::post('/register', [RegisterUserController::class, 'store'])->middleware('guest');
 Route::get('/login', [SessionController::class, 'create'])->name('login')->middleware('guest');
@@ -43,6 +45,9 @@ Route::post('/admin/tags/create', [CategoryController::class, 'store']);
 Route::get('/admin/tags/{category}/edit', [CategoryController::class, 'edit']);
 Route::patch('/admin/tags/{category}/edit', [CategoryController::class, 'update']);
 Route::delete('/admin/tags/{category}/delete', [CategoryController::class, 'destroy']);
+Route::get('/api/projects', [ProjectController::class, 'getProjectsJSON']);
+Route::get('/api/categories', [CategoryController::class, 'getCategoriesJSON']);
+Route::get('/api/tags', [TagController::class, 'getTagsJSON']);
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -51,12 +56,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 
-Route::fallback(function() {
+Route::fallback(function () {
 
     // Set a flash message
-    session()->flash('error','Requested page not found.  Home you go.');
+    session()->flash('error', 'Requested page not found.  Home you go.');
 
     // Redirect to /
     return redirect('/');
 });
-

@@ -14,10 +14,11 @@ class ProjectSeeder extends Seeder
      * @return void
      */
 
-    protected function fakeHTMLParagraphs($count = 3) {
-    $bodyArray = fake()->paragraphs($count);
-    $body = '<p>' . join('</p></p>', $bodyArray ) . '</p>';
-    return $body;
+    protected function fakeHTMLParagraphs($count = 3)
+    {
+        $bodyArray = fake()->paragraphs($count);
+        $body = '<p>' . join('</p></p>', $bodyArray) . '</p>';
+        return $body;
     }
 
     public function run()
@@ -27,7 +28,7 @@ class ProjectSeeder extends Seeder
             'excerpt' => fake()->sentences(2, true),
             'body' => $this->fakeHTMLParagraphs(4),
             'category_id' => 3,
-            'slug' => 'portfolio-showcase'
+            'slug' => 'portfolio-showcase',
         ]);
         Project::create([
             'title' => 'SSD Yearbook',

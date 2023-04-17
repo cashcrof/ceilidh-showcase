@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Tag;
 
 class AdminController extends Controller
 {
