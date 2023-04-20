@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,11 +41,19 @@ Route::post('/admin/users/create', [RegisterUserController::class, 'store']);
 Route::get('/admin/users/{user}/edit', [RegisterUserController::class, 'edit']);
 Route::patch('/admin/users/{user}/edit', [RegisterUserController::class, 'update']);
 Route::delete('/admin/users/{user}/delete', [RegisterUserController::class, 'destroy']);
-Route::get('/admin/tags/create', [CategoryController::class, 'create']);
-Route::post('/admin/tags/create', [CategoryController::class, 'store']);
-Route::get('/admin/tags/{category}/edit', [CategoryController::class, 'edit']);
-Route::patch('/admin/tags/{category}/edit', [CategoryController::class, 'update']);
-Route::delete('/admin/tags/{category}/delete', [CategoryController::class, 'destroy']);
+Route::get('/admin/category/create', [CategoryController::class, 'create']);
+Route::post('/admin/category/create', [CategoryController::class, 'store']);
+Route::get('/admin/category/{category}/edit', [CategoryController::class, 'edit']);
+Route::patch('/admin/category/{category}/edit', [CategoryController::class, 'update']);
+Route::delete('/admin/category/{category}/delete', [CategoryController::class, 'destroy']);
+Route::get('/admin/tag/create', [TagController::class, 'create']);
+Route::post('/admin/tag/create', [TagController::class, 'store']);
+Route::get('/admin/tag/{tag}/edit', [TagController::class, 'edit']);
+Route::patch('/admin/tag/{tag}/edit', [TagController::class, 'update']);
+Route::delete('/admin/tag/{tag}/delete', [TagController::class, 'destroy']);
+Route::get('/admin/tag/{category}/edit', [TagController::class, 'edit']);
+Route::patch('/admin/tag/{tag}/edit', [TagController::class, 'update']);
+Route::delete('/admin/tag/{tag}/delete', [TagController::class, 'destroy']);
 Route::get('/api/projects', [ProjectController::class, 'getProjectsJSON']);
 Route::get('/api/categories', [CategoryController::class, 'getCategoriesJSON']);
 Route::get('/api/tags', [TagController::class, 'getTagsJSON']);

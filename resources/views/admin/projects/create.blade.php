@@ -68,7 +68,7 @@
             <div class="mb-6">
                 <label for="thumb" class="block mb-2 uppercase font-bold text-xs text-gray-700">Thumbnail</label>
                 <input type="file" name="thumb" id="thumb" value="{{ old('thumb') ?? $project?->thumb }}"
-                    class="border border-gray-400 rounded p2 w-full">
+                    required class="border border-gray-400 rounded p2 w-full">
                 @error('thumb')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -77,14 +77,14 @@
             <div class="mb-6">
                 <label for="image" class="block mb-2 uppercase font-bold text-xs text-gray-700">Image</label>
                 <input type="file" name="image" id="image" value="{{ old('image') ?? $project?->image }}"
-                    class="border border-gray-400 rounded p2 w-full">
+                    required class="border border-gray-400 rounded p2 w-full">
                 @error('image')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <label for="tags" class="block mb-2 uppercase font-bold text-xs text-gray-700">Tags</label>
-            <select name="tags[]" id="tags" multiple="multiple">
+            <select name="tags[]" id="tags" multiple>
                 @foreach ($tags as $tag)
                     <option value="{{ $tag->id }}"
                         @if (old('tags') && in_array($tag->id, old('tags'))) selected

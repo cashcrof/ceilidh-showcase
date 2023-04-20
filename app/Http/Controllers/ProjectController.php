@@ -88,8 +88,8 @@ class ProjectController extends Controller
         $attributes['slug'] = Str::slug($attributes['title']);
         // Save upload in public storage and set path attributes 
         $image_path = $request->file('image')->storeAs('images', $request->image->getClientOriginalName(), 'public');
-        $attributes['image'] = $image_path;
         $thumb_path = $request->file('thumb')->storeAs('images', $request->thumb->getClientOriginalName(), 'public');
+        $attributes['image'] = $image_path;
         $attributes['thumb'] = $thumb_path;
 
         $project = Project::create($attributes);

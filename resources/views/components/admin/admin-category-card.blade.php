@@ -1,10 +1,10 @@
-@props(['tag'])
+@props(['category'])
 
 <li class="flex justify-between w-100 p-2 even:bg-slate-200 odd:bg-white">
-    <p class="inline-block">{{ $tag->name }}</p>
+    <p class="inline-block">{{ $category->name }}</p>
     <div class="inline-block">
-        <a class="font-normal text-blue-700" href="/admin/tag/{{ $tag->id }}/edit">Edit</a>
-        <form method="POST" action="/admin/tag/{{ $tag->id }}/delete" class="inline">
+        <a class="font-normal text-blue-700" href="/admin/category/{{ $category->id }}/edit">Edit</a>
+        <form method="POST" action="/admin/category/{{ $category->id }}/delete" class="inline">
             @csrf
             @method('delete')
             <button type="submit" class="text-red-600">

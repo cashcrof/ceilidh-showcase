@@ -14,9 +14,10 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin.index')
-        ->with('projects', Project::all())
-        ->with('users', User::all())
-        ->with('categories', Category::all());
+            ->with('projects', Project::all())
+            ->with('users', User::all())
+            ->with('categories', Category::all())
+            ->with('tags', Tag::all());
     }
 
 }

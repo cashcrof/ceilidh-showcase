@@ -5,11 +5,11 @@
 
             @if ($category)
                 <h1 class="text-center font-bold text-xl mb-3">Edit Category: {{ $category->name }}</h1>
-                <form method="POST" action="/admin/tags/{{ $category->id }}/edit" enctype="multipart/form-data">
+                <form method="POST" action="/admin/category/{{ $category->id }}/edit" enctype="multipart/form-data">
                     @method('PATCH')
                 @else
                     <h1 class="text-center font-bold text-xl mb-3">Create Category</h1>
-                    <form method="POST" action="/admin/tags/create" enctype="multipart/form-data">
+                    <form method="POST" action="/admin/category/create" enctype="multipart/form-data">
             @endif
             @csrf
             <div class="mb-6">
